@@ -19,6 +19,63 @@ function sign() {
 	apksigner sign --ks keystore.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$STORE_PASSWORD --key-pass pass:$KEY_PASSWORD --out $1 $2;
 }
 
+# $1 IP
+# $2 Port
+function connect() {
+        adb -d tcpip $2
+        adb -d connect $1:$2
+}
+
+function key() {
+        adb shell input keyevent $1
+}
+
+function text() {
+        adb shell input text $1
+}
+
+function tab() {
+        key 61
+}
+
+function enter() {
+        key 66
+}
+
+function sampleScript() {
+        text Luiz
+        tab 
+        text Gustavo
+        tab 
+        text Pozzo
+        tab 
+        enter
+        tab 
+        tab 
+        enter
+        enter
+        tab 
+        enter
+        enter
+        tab 
+        text 1990
+        tab 
+        tab 
+        tab 
+        text 3232323232
+        tab 
+        tab 
+        text luiz.pozzo@mttnow.com
+        tab 
+        tab 
+        enter
+        tab 
+        tab 
+        tab 
+        tab 
+        enter
+}
+
 case $1 in
 	zipalign)
 		zipalign $2 $3;
@@ -26,6 +83,12 @@ case $1 in
 	sign)
 		sign $2 $3;
 		;;
+        sample)
+                sampleScript;
+                ;;
+        connect)
+                connect $1 $2;
+                ;;
 	*)
 		echo "Unknown command";
 		;;
