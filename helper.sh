@@ -20,6 +20,12 @@ function createMyAlias() {
 	echo "alias pozzo='$PATH'" >> ~/.bashrc;
 	echo "alias z='$PATH'" >> ~/.bashrc;
 	echo "alias zs='sudo $PATH'" >> ~/.bashrc;
+	echo "alias g='./gradlew --daemon --stacktrace'" >> ~/.bashrc;
+	echo "alias paste='adb shell input text'" >> ~/.bashrc;
+	echo "alias gc='g clean'" >> ~/.bashrc;
+	echo "alias l=ls" >> ~/.bashrc;
+	echo "alias ll=ls" >> ~/.bashrc;
+	echo "alias sl=ls" >> ~/.bashrc;
 	echo "#end auto added" >> ~/.bashrc;
 	echo "now run: source ~/.bashrc";
 }

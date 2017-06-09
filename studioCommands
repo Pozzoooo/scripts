@@ -1,0 +1,29 @@
+Compile:
+	[:app:generateReleaseSources, :app:prepareReleaseUnitTestDependencies, :app:mockableAndroidJar, :app:compileReleaseSources, :app:compileReleaseUnitTestSources]
+Clean:
+	[clean, :app:generateReleaseSources, :app:prepareReleaseUnitTestDependencies, :app:mockableAndroidJar]
+Rebuild:
+	[clean, :app:generateReleaseSources, :app:prepareReleaseUnitTestDependencies, :app:mockableAndroidJar, :app:compileReleaseSources, :app:compileReleaseUnitTestSources]
+Make:
+	[:app:generateDebugSources, :app:mockableAndroidJar, :app:prepareDebugUnitTestDependencies, :app:generateDebugAndroidTestSources, :app:compileDebugSources, :app:compileDebugUnitTestSources, :app:compileDebugAndroidTestSources, :app-resources:generateDebugSources, :app-resources:generateDebugAndroidTestSources, :app-resources:mockableAndroidJar, :app-resources:prepareDebugUnitTestDependencies, :app-resources:compileDebugSources, :app-resources:compileDebugAndroidTestSources, :app-resources:compileDebugUnitTestSources]
+Assemble apk:
+	[:app:assembleRelease]
+Debug:
+	[:app:assembleRelease]
+Execute:
+	[:app:assembleRelease]
+
+- Nexus and how to take a look on source code;
+- Gradle default abreviation: aD -> assembleDebug;
+- Bash alias is not related but useful;
+- --profile
+- --rerun-tasks
+- assemble vs build
+- assemble vs assembleRelease
+- how to create a simple task inside build.gradle
+- dependsOn
+- afterEvaluate
+- -P and -D
+- variantFilter
+
+
