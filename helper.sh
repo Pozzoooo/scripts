@@ -11,6 +11,26 @@ if [[ -z $1 ]]; then
 	exit;
 fi;
 
+function main() {
+	case $1 in
+	        net|network|wifi)
+                	restartNetwork;
+        	        ;;
+	        up|upgrade|update)
+        	        updateUpgrade;
+	                ;;
+		gitPullFolder|pull)
+			gitPullFolder;
+			;;
+        	*)
+	                echo "Look at the final of the script file to see the avaialble commands, aint gonna print myself :P";
+	esac
+}
+
+function gitPullFolder() {
+	ls | xargs -I X sh -c "echo X; cd X; git pull; cd ..; echo ''; echo ''"
+}
+
 function createMyAlias() {
 	PATH="`pwd`/$0";
 	echo "" >> ~/.bashrc;
@@ -74,17 +94,4 @@ function diskBenchmark() {
 	dd if=/dev/zero of=/tmp/output bs=8k count=1000k; rm -f /tmp/output;
 }
 
-case $1 in
-	live)
-		createMyAlias;
-		;;
-	net|network|wifi)
-		restartNetwork;
-		;;
-	up|upgrade|update)
-		updateUpgrade;
-		;;
-	*)
-		echo "Look at the final of the script file to see the avaialble commands, aint gonna print myself :P";
-esac
-
+main $1
