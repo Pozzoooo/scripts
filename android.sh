@@ -22,6 +22,9 @@ function main() {
 	        connect)
 	                connect $1 $2;
 	                ;;
+		ip)
+			deviceIp
+			;;
 		dump)
 			dump
 			;;
@@ -44,9 +47,13 @@ function sign() {
 
 function connect() {
 	PORT=9900
-        IP=`adb -d shell ip route | awk {'if( NF >=9){print $9;}'}` #maybe alternative: adb shell netcfg
+        IP=`deviceIp`
 	adb -d tcpip $PORT
         adb -d connect $IP:$PORT
+}
+
+function deviceIp() {
+	adb -d shell ip route | awk {'if( NF >=9){print $9;}'} #maybe alternative: adb shell netcfg
 }
 
 function dump() {
