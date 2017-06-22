@@ -8,6 +8,29 @@ if [[ -z $1 ]]; then
 	exit;
 fi;
 
+function main() {
+	case $1 in
+	        zipalign)
+	                zipalign $2 $3;
+	                ;;
+	        sign)
+	                sign $2 $3;
+	                ;;
+	        sample)
+	                sampleScript;
+	                ;;
+	        connect)
+	                connect $1 $2;
+	                ;;
+		dump)
+			dump
+			;;
+	        *)
+	                echo "Unknown command";
+	                ;;
+	esac
+}
+
 function align() {
 	zipalign -v -p 4 $1 $2;
 }
@@ -19,11 +42,15 @@ function sign() {
 	apksigner sign --ks keystore.jks --ks-key-alias $KEY_ALIAS --ks-pass pass:$STORE_PASSWORD --key-pass pass:$KEY_PASSWORD --out $1 $2;
 }
 
-# $1 IP
-# $2 Port
 function connect() {
-        adb -d tcpip $2
-        adb -d connect $1:$2
+	PORT=9900
+        IP=`adb -d shell ip route | awk {'if( NF >=9){print $9;}'}` #maybe alternative: adb shell netcfg
+	adb -d tcpip $PORT
+        adb -d connect $IP:$PORT
+}
+
+function dump() {
+	adb bugreport
 }
 
 function key() {
@@ -76,20 +103,5 @@ function sampleScript() {
         enter
 }
 
-case $1 in
-	zipalign)
-		zipalign $2 $3;
-		;;
-	sign)
-		sign $2 $3;
-		;;
-        sample)
-                sampleScript;
-                ;;
-        connect)
-                connect $1 $2;
-                ;;
-	*)
-		echo "Unknown command";
-		;;
-esac
+main $1
+
