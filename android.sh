@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -xe
+#set -x
+set -e
 
 if [[ -z $1 ]]; then
   	echo "say me what"
@@ -31,6 +32,21 @@ function main() {
 			;;
 		enter)
 			enter
+			;;
+		volUp|vup|louder)
+			volumeUp
+			;;
+		volDown|vdown)
+			volumeDown
+			;;
+		volMute|volmute|mute)
+			volumeMute
+			;;
+		play|pause|pp)
+			mediaPlayPause
+			;;
+		next|skip)
+			mediaNext
 			;;
 #Connection
 	        connect)
@@ -99,6 +115,14 @@ function text() {
         adb shell input text "$TEXT"
 }
 
+function volumeUp() {
+	key 24
+}
+
+function volumeDown() {
+	key 25
+}
+
 function tab() {
         key 61
 }
@@ -109,6 +133,18 @@ function enter() {
 
 function backspace() {
 	key 67
+}
+
+function mediaPlayPause() {
+	key 85
+}
+
+function mediaNext() {
+	key 87
+}
+
+function volumeMute() {
+	key 164
 }
 
 function sampleScript() {
