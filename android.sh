@@ -34,10 +34,10 @@ function main() {
 			enter
 			;;
 		volUp|vup|louder)
-			volumeUp
+			volumeUp $2
 			;;
 		volDown|vdown)
-			volumeDown
+			volumeDown $2
 			;;
 		volMute|volmute|mute)
 			volumeMute
@@ -116,11 +116,15 @@ function text() {
 }
 
 function volumeUp() {
-	key 24
+	for i in $(seq 1 $1); do
+		key 24 &
+	done
 }
 
 function volumeDown() {
-	key 25
+	for i in $(seq 1 $1); do
+		key 25 &
+	done
 }
 
 function tab() {
