@@ -33,19 +33,20 @@ function main() {
 		enter)
 			enter
 			;;
-		volUp|vup|louder)
+#Media
+		volUp|vup|louder|vu)
 			volumeUp $2
 			;;
-		volDown|vdown)
+		volDown|vdown|vd)
 			volumeDown $2
 			;;
-		volMute|volmute|mute)
+		volMute|volmute|mute|vm)
 			volumeMute
 			;;
-		play|pause|pp)
+		play|pause|pp|vp)
 			mediaPlayPause
 			;;
-		next|skip)
+		next|skip|vn|vs)
 			mediaNext
 			;;
 #Connection
@@ -61,6 +62,16 @@ function main() {
 #Debug
 		dump)
 			dump
+			;;
+#Intent
+		start|url|open)
+			startUrl $2
+			;;
+		startActivity|activity)
+			startActivity $2
+			;;
+		startAction)
+			startAction $2 $3 $4 $5
 			;;
 #Error
 	        *)
@@ -102,6 +113,21 @@ function wifiKeyboardDefaultUrl() {
 
 function dump() {
 	adb bugreport
+}
+
+# ------- Intent ------
+
+function startUrl() {
+	adb shell am start $1
+}
+
+function startActivity() {
+	adb shell am start -n $1
+}
+
+#adb shell am start -a "android.intent.action.SEND" --es "android.intent.extra.TEXT" "Hello World" -t "text/plain"
+function startAction() {
+	adb shell am start -a $1 -es $2 $3 -t $4
 }
 
 # ------- Input ------
