@@ -14,18 +14,33 @@ fi;
 function main() {
 	case $1 in
 	        net|network|wifi)
-                	restartNetwork;
+                	restartNetwork
         	        ;;
 	        up|upgrade|update)
-        	        updateUpgrade;
+        	        updateUpgrade
 	                ;;
 		gitPullFolder|pull)
-			gitPullFolder;
+			gitPullFolder
+			;;
+		brith)
+			screenBrithness $2 $3
 			;;
         	*)
-	                echo "Look at the final of the script file to see the avaialble commands, aint gonna print myself :P";
+	                echo "Look at the final of the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
 }
+
+function screenBrithness() {
+	case $2 in
+		xfce)
+			xbacklight $1
+			;;
+		*)
+			sudo su -c "echo $1 > /sys/class/backlight/*/brightness"
+			;;
+	esac
+}
+
 
 function gitPullFolder() {
 	ls | xargs -I X sh -c "echo X; cd X; git pull; cd ..; echo ''; echo ''"
@@ -94,4 +109,4 @@ function diskBenchmark() {
 	dd if=/dev/zero of=/tmp/output bs=8k count=1000k; rm -f /tmp/output;
 }
 
-main $1
+main "$@"
