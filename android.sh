@@ -73,6 +73,17 @@ function main() {
 		startAction)
 			startAction $2 $3 $4 $5
 			;;
+#Record
+		record)
+			record $2
+			;;
+		pullVideo|saveVideo)
+			pullVideo $2
+			;;
+#File
+		pull)
+			pull $2
+			;;
 #Error
 	        *)
 	                echo "Unknown command"
@@ -80,6 +91,21 @@ function main() {
 	esac
 }
 
+# ----- Record -----
+function record() {
+	adb shell screenrecord /sdcard/$1
+}
+
+function pullVideo() {
+	pull /sdcard/$1
+}
+
+# ----- File -----
+function pull() {
+	adb pull $1
+}
+
+# ----- Sign -----
 function align() {
 	zipalign -v -p 4 $1 $2;
 }
