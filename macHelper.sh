@@ -55,6 +55,9 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 # sending messages and opening windows for replies
 defaults write com.apple.Mail DisableSendAnimations -bool true
 defaults write com.apple.Mail DisableReplyAnimations -bool true
+
+#To disable the fu**** dock
+defaults write com.apple.dock autohide-delay -float 1000; killall Dock
 }
 
 function init() {
