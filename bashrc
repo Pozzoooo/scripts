@@ -1,9 +1,21 @@
+#Add it to ~/.basrc like this: . ~/dev/projs/scripts/bashrc
+
+#has to be set to scripts folder manually
+DIR="~/dev/projs/scripts"
+alias and="$DIR/android.sh"
+alias hlp="$DIR/helper.sh"
+
 #basic
-alias l=ls
-alias ll=ls
 alias sl=ls
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
 alias bim=vim
 alias grep=grep --color=auto
+
+#alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #Android helper
 alias paste='adb shell input text'
