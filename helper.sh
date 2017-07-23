@@ -26,8 +26,12 @@ function main() {
 			screenBrithness $2 $3
 			;;
         	*)
-	                echo "Look at the final of the script file to see the avaialble commands, aint gonna print myself :P"
+	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
+}
+
+function motherboardInfo() {
+	sudo dmidecode -t2
 }
 
 function screenBrithness() {
@@ -68,7 +72,12 @@ function startAndroidStudio() {
 }
 
 function backupXfceConfig() {
-	cp ~/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml ~/.;
+	cp /media/xalien/67fd4c7b-df4b-42fb-90fd-2436e502f423/home/barrador/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml .
+	cp /media/xalien/67fd4c7b-df4b-42fb-90fd-2436e502f423/home/barrador/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml .
+	cp /media/xalien/67fd4c7b-df4b-42fb-90fd-2436e502f423/home/barrador/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml .
+	cp /media/xalien/67fd4c7b-df4b-42fb-90fd-2436e502f423/home/barrador/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml .
+	cp /media/xalien/67fd4c7b-df4b-42fb-90fd-2436e502f423/home/barrador/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml .
+	cp /media/xalien/67fd4c7b-df4b-42fb-90fd-2436e502f423/home/barrador/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml .
 }
 
 function updateUpgrade() {
@@ -87,6 +96,8 @@ function installJDKi() {
 function setupGit() {
 	ssh-keygen;
 	cat ~/.ssh/id_rsa.pub | xclip -sel clip;
+	git config --global user.name "Luiz Gustavo Pozzo"
+	git config --global user.email "luiz.pozzo@gmail.com"
 }
 
 function setupDevEnviorment() {
