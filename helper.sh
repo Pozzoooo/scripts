@@ -50,19 +50,6 @@ function gitPullFolder() {
 	ls | xargs -I X sh -c "echo X; cd X; git pull; cd ..; echo ''; echo ''"
 }
 
-function createMyAlias() {
-	PATH="`pwd`/$0";
-	echo "" >> ~/.bashrc;
-	echo "#auto added by pozzo helper" >> ~/.bashrc;
-	echo "alias h='$PATH'" >> ~/.bashrc;
-	echo "alias helper='$PATH'" >> ~/.bashrc;
-	echo "alias pozzo='$PATH'" >> ~/.bashrc;
-	echo "alias z='$PATH'" >> ~/.bashrc;
-	echo "alias zs='sudo $PATH'" >> ~/.bashrc;
-	echo "#end auto added" >> ~/.bashrc;
-	echo "now run: source ~/.bashrc";
-}
-
 function restartNetwork() {
 	service network-manager restart;
 }
@@ -121,3 +108,4 @@ function diskBenchmark() {
 }
 
 main "$@"
+
