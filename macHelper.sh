@@ -63,7 +63,7 @@ defaults write com.apple.dock autohide-delay -float 1000; killall Dock
 function init() {
 	open /Applications/Google\ Chrome.app
 	open /Applications/HipChat.app
-	open /Users/luizpozzo/Downloads/DeskDockServer_1.0.9.app
+	open /Applications/DeskDockServer_1.0.9.app
 	open /Applications/Android\ Studio.app
 }
 
