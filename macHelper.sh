@@ -1,22 +1,32 @@
 #!/bin/sh
 
 set -e
-set -x
+#set -x
 
 if [[ -z $1 ]]; then
-        echo "say me what";
-        exit;
+        echo "say me what"
+        exit
 fi;
 
 function main() {
 	case $1 in
         	disableEffects)
-                	disableEffects;
+                	disableEffects
                 	;;  
         	init)
-               		init;
+               		init
         	        ;;  
+		cpu)
+			cpu
+			;;
+		*)
+			echo "=P"
+			;;
 	esac
+}
+
+function cpu() {
+	sysctl -n machdep.cpu.brand_string
 }
 
 function disableEffects() {
