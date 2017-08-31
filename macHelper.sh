@@ -8,6 +8,10 @@ if [[ -z $1 ]]; then
         exit
 fi;
 
+function ad() {
+	alias ad="date; osascript -e 'display notification \"Task done\" with title \"Done\"';"
+}
+
 function main() {
 	case $1 in
         	disableEffects)

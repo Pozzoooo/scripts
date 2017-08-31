@@ -1,0 +1,12 @@
+[user]
+	name = Luiz Gustavo Pozzo
+	email = luiz.pozzo@gmail.com
+[core]
+	autocrlf = input
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status

@@ -30,3 +30,6 @@ alias g="./gradlew --stacktrace --daemon"
 alias gc="g clean"
 alias gd="g assembleDebug"
 
+#git
+alias gitconfig="git config --global"
+
