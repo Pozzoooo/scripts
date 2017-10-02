@@ -8,7 +8,7 @@ if [[ -z $1 ]]; then
         exit
 fi;
 
-function ad() {
+function alert() {
 	alias ad="date; osascript -e 'display notification \"Task done\" with title \"Done\"';"
 }
 
