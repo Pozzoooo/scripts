@@ -3,6 +3,10 @@
 set -e
 #set -x
 
+# cmd + k = hard clear
+#
+#
+
 if [[ -z $1 ]]; then
         echo "say me what"
         exit
