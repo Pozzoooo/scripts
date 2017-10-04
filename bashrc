@@ -18,9 +18,9 @@ alias ld='ls -d' #great to filter directories
 alias c='clear'
 
 #error correction
-alias bim=vim
-alias grep=grep --color=auto
 alias sl=ls
+alias bim='vim'
+alias grep='grep --color=auto'
 
 #alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
