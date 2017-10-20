@@ -1,4 +1,4 @@
-#Add it to ~/.basrc like this: . ~/dev/projs/scripts/bashrc
+#Add it to ~/.basrc like this: . ~/dev/projs/scripts/essentials/bashrc
 
 #
 # esc . ctrl + e = expand alias
@@ -37,6 +37,10 @@ alias clearapp="devid | xargs -I X adb -s X shell pm clear $1"
 alias g="./gradlew --stacktrace --daemon"
 alias gc="g clean"
 alias gd="g assembleDebug"
+
+# mainframer
+alias m="~/dev/projs/mainframer/mainframer"
+alias mg="m ./gradlew --stacktrace --daemon"
 
 #git
 alias gitconfig="git config --global"

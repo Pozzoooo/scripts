@@ -1,0 +1,37 @@
+WebView <-> WebView
+	- Cookies are shared
+	- An SSO system should be loggedin between webviews
+
+WebView <-> Browser
+	- Does not share cookies
+	- Isolated SSO login
+
+CustomTab <-> Browser
+	- CustomTab acts like a browser, though it can be visualy customised
+	- Cookies are shared
+	- SSO should be loggedin between them
+
+SSO
+	WebView
+	- Sharing cookies between webview and browser is not an option;
+	- If SSO page is not under our control:
+		- - He is necessarily going to need to login at least once;
+	- If SSO page is under our control:
+		- - We could find a solution with parameters, cookies or something similar to skip login again;
+		- - He still need to login once in the webview;
+	- When opening a client web site:
+		- - We are not gonna be able to provide any information to the SSO login page, there is no standard here; 
+
+	CustomTab
+	- Shared with browser;
+	- If user is logged in the browser:
+		- - User is going to skip login inside CustomTab (might see permision page only);
+		- - We can't recognize, so we can't suggest user to use CustomTab;
+		- - We can open website (via CustomTab or Browser) and authentication should be automatically skiped;
+	- If user is not logged in the browser:
+		- - User will be requested for its credentials and then the all options from before are valid;
+	- When opening a client web site:
+		- - We need an auto-redirect that goes throught login page;
+			- - - Something similar on what google does when you try to open gmail.com without being loggedin (after login success you proceed to the requested page);
+
+
