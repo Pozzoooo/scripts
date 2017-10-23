@@ -25,6 +25,9 @@ function main() {
 		brith)
 			screenBrithness $2 $3
 			;;
+		scan)
+			arp-scan --interface=$2 --localnet
+			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
