@@ -33,6 +33,9 @@ function main() {
 		enter)
 			enter
 			;;
+		tab)
+			tab
+			;;
 #Media
 		volUp|vup|louder|vu)
 			volumeUp $2
