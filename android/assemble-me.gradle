@@ -1,0 +1,12 @@
+def getCurrentVariantTask() {
+  def xml = new XmlParser().parse(project.file("${project.name}.iml"))
+  def selectedBuildVariant = xml.depthFirst().find { node ->
+    node.hasProperty("name") && node.@name == 'SELECTED_BUILD_VARIANT'
+  }?.@value
+  def taskName = "assemble${selectedBuildVariant.capitalize()}"
+  println "task to be executed: $taskName"
+  return taskName
+}
+
+task assembleMe(dependsOn: getCurrentVariantTask()) {}
+
