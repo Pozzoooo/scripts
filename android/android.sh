@@ -87,11 +87,27 @@ function main() {
 		pull)
 			pull $2
 			;;
+#Tools
+		apps)
+			listAllApps
+			;;
+		apkInterface)
+			dumpApkInterface $2
+			;;
 #Error
 	        *)
 	                echo "Unknown command"
 	                ;;
 	esac
+}
+
+# ----- Tools ------
+function listAllApps() {
+	adb shell 'pm list packages -f'
+}
+
+function dumpApkInterface() {
+	aapt dump badging $1
 }
 
 # ----- Record -----

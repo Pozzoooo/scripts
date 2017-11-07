@@ -92,7 +92,7 @@ function disableEffects() {
 function init() {
 	open /Applications/Google\ Chrome.app
 	open /Applications/HipChat.app
-	open /Applications/DeskDockServer_1.0.9.app
+	open /Applications/DeskDockServer_1.1.0.app
 	open /Applications/Android\ Studio.app
 }
 
