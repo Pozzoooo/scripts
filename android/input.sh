@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function key() {
         adb shell input keyevent $1
 }
@@ -19,7 +21,7 @@ function volumeDown() {
         done
 }
 
-function tab() {                                                                                                                                                                                                                                                              
+function tab() {
         key 61
 }
 
@@ -41,5 +43,18 @@ function mediaNext() {
 
 function volumeMute() {
         key 164
+}
+
+function comboTabEnter() {
+        while [[ $# -gt 0 ]]; do
+                COUNT="$1"
+                    
+                for i in $(seq 1 $COUNT); do
+			echo "$i"
+                        tab
+                done
+                enter
+		shift
+        done
 }
 
