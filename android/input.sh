@@ -50,7 +50,7 @@ function comboTabEnter() {
                 COUNT="$1"
                     
                 for i in $(seq 1 $COUNT); do
-			echo "$i"
+			printf "$i"
                         tab
                 done
                 enter

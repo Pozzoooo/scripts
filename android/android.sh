@@ -94,6 +94,9 @@ function main() {
 		apkInterface)
 			dumpApkInterface $2
 			;;
+		activity)
+			openedActivity
+			;;
 #Error
 	        *)
 	                echo "Unknown command"
@@ -108,6 +111,10 @@ function listAllApps() {
 
 function dumpApkInterface() {
 	aapt dump badging $1
+}
+
+function openedActivity() {
+	adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'
 }
 
 # ----- Record -----
