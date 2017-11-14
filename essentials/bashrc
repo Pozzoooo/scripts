@@ -6,9 +6,10 @@
 #
 
 #has to be set to scripts folder manually
-DIR="~/dev/projs/scripts"
+DIR="$HOME/dev/projs/scripts"
 alias and="$DIR/android.sh"
-alias hlp="$DIR/helper.sh"
+alias hlp="$DIR/linux/helper.sh"
+alias mode="$DIR/linux/mode.sh"
 
 #basic
 alias ll='ls -alF'
@@ -39,7 +40,7 @@ alias gc="g clean"
 alias gd="g assembleDebug"
 
 # mainframer
-alias m="~/dev/projs/mainframer/mainframer"
+alias m="$DIR/../mainframer/mainframer"
 alias mg="m ./gradlew --stacktrace --daemon"
 
 #git

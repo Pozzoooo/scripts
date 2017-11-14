@@ -4,7 +4,7 @@
 # @since 14/11/2016
 
 set -e
-set -x
+#set -x
 
 if [[ -z $1 ]]; then
 	echo "say me what";
