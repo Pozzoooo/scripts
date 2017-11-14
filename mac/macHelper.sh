@@ -94,6 +94,7 @@ function init() {
 	open /Applications/HipChat.app
 	open /Applications/DeskDockServer_1.1.0.app
 	open /Applications/Android\ Studio.app
+	open /Applications/Charles.app
 }
 
 main "$@"
