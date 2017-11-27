@@ -8,6 +8,7 @@ if [[ -z $1 ]]; then
 	exit
 fi;
 
+#current script directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/input.sh
 
@@ -183,29 +184,6 @@ function startActivity() {
 #adb shell am start -a "android.intent.action.SEND" --es "android.intent.extra.TEXT" "Hello World" -t "text/plain"
 function startAction() {
 	adb shell am start -a $1 -es $2 $3 -t $4
-}
-
-# ------- Input ------
-
-function key() {
-        adb shell input keyevent $1
-}
-
-function text() {
-	TEXT=`echo "$1" | sed "s/ /%s/g"`
-        adb shell input text "$TEXT"
-}
-
-function volumeUp() {
-	for i in $(seq 1 $1); do
-		key 24 &
-	done
-}
-
-function volumeDown() {
-	for i in $(seq 1 $1); do
-		key 25 &
-	done
 }
 
 main "$@"
