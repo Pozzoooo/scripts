@@ -28,9 +28,16 @@ function main() {
 		scan)
 			arp-scan --interface=$2 --localnet
 			;;
+		shDir)
+			shDir
+			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
+}
+
+function shDir() {
+	echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 }
 
 function motherboardInfo() {
