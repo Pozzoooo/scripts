@@ -7,7 +7,7 @@
 
 #has to be set to scripts folder manually
 DIR="$HOME/dev/projs/scripts"
-alias and="$DIR/android.sh"
+alias and="$DIR/android/android.sh"
 alias hlp="$DIR/linux/helper.sh"
 alias mode="$DIR/linux/mode.sh"
 
