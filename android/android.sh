@@ -54,7 +54,7 @@ function main() {
 			;;
 #Connection
 	        connect)
-	                connect $1 $2
+	                connect
 	                ;;
 		ip)
 			deviceIp
@@ -94,7 +94,7 @@ function main() {
 		apkInterface)
 			dumpApkInterface $2
 			;;
-		activity)
+		opened)
 			openedActivity
 			;;
 #Error

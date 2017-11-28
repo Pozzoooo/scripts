@@ -95,6 +95,7 @@ function init() {
 	open /Applications/DeskDockServer_1.1.0.app
 	open /Applications/Android\ Studio.app
 	open /Applications/Charles.app
+	osascript ~/dev/projs/scripts/mac/wake.scpt
 }
 
 main "$@"
