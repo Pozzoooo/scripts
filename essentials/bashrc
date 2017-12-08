@@ -35,13 +35,19 @@ alias rmapp="devid | xargs -I X adb -s X uninstall $1"
 alias clearapp="devid | xargs -I X adb -s X shell pm clear $1"
 
 # gradle
-alias g="./gradlew --stacktrace --daemon"
+GRADLE="./gradlew --stacktrace --daemon"
+ASSEMBLE="assembleDebug"
+alias g="$GRADLE"
 alias gc="g clean"
-alias gd="g assembleDebug"
+alias gd="g $ASSEMBLE"
+alias gcd="gc $ASSEMBLE"
 
 # mainframer
-alias m="$DIR/../mainframer/mainframer"
-alias mg="m ./gradlew --stacktrace --daemon"
+alias m="mainframer"
+alias mg="m $GRADLE"
+alias mgd="mg $ASSEMBLE"
+alias mgc="mg clean"
+alias mgcd="mgc $ASSEMBLE"
 
 #git
 alias gitconfig="git config --global"
