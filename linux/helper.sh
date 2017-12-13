@@ -31,9 +31,25 @@ function main() {
 		shDir)
 			shDir
 			;;
+		gateway)
+			gateway
+			;;
+		gStUser)
+			gitStatusByUser
+			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
+}
+
+#An even beter tool: https://github.com/arzzen/git-quick-stats
+function gitStatusByUser() {
+	git log --author="$1" --pretty=tformat: --numstat \
+		| gawk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s removed lines: %s total lines: %s\n", add, subs, loc }' -
+}
+
+function gateway() {
+	ip route | grep default
 }
 
 function shDir() {
