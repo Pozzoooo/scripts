@@ -45,14 +45,17 @@ function volumeMute() {
         key 164
 }
 
+function comboTab() {
+	for i in $(seq 1 $1); do
+		printf "$i"
+		tab &
+	done
+	sleep 1
+}
+
 function comboTabEnter() {
         while [[ $# -gt 0 ]]; do
-                COUNT="$1"
-                    
-                for i in $(seq 1 $COUNT); do
-			printf "$i"
-                        tab
-                done
+		comboTab $1
                 enter
 		shift
         done
