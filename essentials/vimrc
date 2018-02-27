@@ -4,3 +4,4 @@ colorscheme elflord
 set hlsearch
 set cursorline
 cmap w!! w !sudo tee > /dev/null %
+set mouse=-a
