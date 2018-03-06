@@ -73,6 +73,9 @@ function main() {
 		doze)
 			forceDoze
 			;;
+		dozeOff)
+			dozeOff
+			;;
 #Intent
 		start|url|open)
 			startUrl $2
@@ -176,6 +179,10 @@ function dump() {
 
 function forceDoze() {
 	adb shell dumpsys deviceidle force-idle
+}
+
+function dozeOff() {
+	adb shell dumpsys deviceidle unforce
 }
 
 # ------- Intent ------
