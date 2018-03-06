@@ -70,6 +70,9 @@ function main() {
 		dump)
 			dump
 			;;
+		doze)
+			forceDoze
+			;;
 #Intent
 		start|url|open)
 			startUrl $2
@@ -169,6 +172,10 @@ function wifiKeyboardDefaultUrl() {
 
 function dump() {
 	adb bugreport
+}
+
+function forceDoze() {
+	adb shell dumpsys deviceidle force-idle
 }
 
 # ------- Intent ------
