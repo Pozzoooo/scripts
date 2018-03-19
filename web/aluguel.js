@@ -16,3 +16,6 @@ function newRow(empresa, data) {
 exemplo complexo:
 for(i=1; i<15; ++i) { newRow("AMBEV S/A", i + "/03/2018"); }
 
+- AMBEV S/A
+- B3 S.A. ¿ BRASI
+
