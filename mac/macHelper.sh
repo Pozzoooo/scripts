@@ -91,11 +91,11 @@ function disableEffects() {
 
 function init() {
 	open /Applications/Google\ Chrome.app
-	open /Applications/HipChat.app
-	open /Applications/DeskDockServer_1.1.0.app
+	(sleep 120 && open /Applications/DeskDockServer_1.1.0.app) &
 	open /Applications/Android\ Studio.app
-	open /Applications/Charles.app
+	(sleep 20 && open /Applications/Charles.app) &
 	osascript ~/dev/projs/scripts/mac/wake.scpt
+	open /Applications/slack.app
 }
 
 main "$@"

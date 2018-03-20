@@ -76,6 +76,9 @@ function main() {
 		dozeOff)
 			dozeOff
 			;;
+		demo)
+			demoMode $1
+			;;
 #Intent
 		start|url|open)
 			startUrl $2
@@ -125,6 +128,15 @@ function dumpApkInterface() {
 
 function openedActivity() {
 	adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'
+}
+
+#they are more examples actually, you need to find the commands on sdk tools folder
+function oldSdkList() {
+	android list sdk --all
+}
+
+function oldSdkUpdate() {
+	android update sdk -u -a -t "package no."
 }
 
 # ----- Record -----
@@ -183,6 +195,19 @@ function forceDoze() {
 
 function dozeOff() {
 	adb shell dumpsys deviceidle unforce
+}
+
+#// display time 12:00
+#adb shell am broadcast -a com.android.systemui.demo -e command clock -e hhmm 1200
+#// Display full mobile data without type
+#adb shell am broadcast -a com.android.systemui.demo -e command network -e mobile show -e level 4 -e datatype false
+#// Hide notifications
+#adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false
+#// Show full battery but not in charging state
+#adb shell am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
+#to exit demo -> adb shell am broadcast -a com.android.systemui.demo -e command exit
+function demoMode() {
+	adb shell settings put global sysui_demo_allowed $1
 }
 
 # ------- Intent ------
