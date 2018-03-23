@@ -37,6 +37,9 @@ function main() {
 		gStUser)
 			gitStatusByUser
 			;;
+		countDown)
+			countDown $2
+			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
@@ -131,6 +134,15 @@ function setupDevMachine() {
 function diskBenchmark() {
 	hdparm -tT /dev/sda5;
 	dd if=/dev/zero of=/tmp/output bs=8k count=1000k; rm -f /tmp/output;
+}
+
+function countDown() {
+	for (( i=$1; i>0; --i )); do 
+		echo $i
+		sleep 1
+		tput cuu1
+		tput el
+	done
 }
 
 main "$@"

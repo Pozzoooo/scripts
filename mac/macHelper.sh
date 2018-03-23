@@ -91,10 +91,10 @@ function disableEffects() {
 
 function init() {
 	open /Applications/Google\ Chrome.app
-	(sleep 120 && open /Applications/DeskDockServer_1.1.0.app) &
+	(sleep 1200 && open /Applications/DeskDockServer_1.1.0.app) &
 	open /Applications/Android\ Studio.app
 	(sleep 20 && open /Applications/Charles.app) &
-	osascript ~/dev/projs/scripts/mac/wake.scpt
+	#osascript ~/dev/projs/scripts/mac/wake.scpt
 	open /Applications/slack.app
 }
 
