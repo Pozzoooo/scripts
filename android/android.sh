@@ -110,6 +110,9 @@ function main() {
 		opened)
 			openedActivity
 			;;
+		kill)
+			adbKill $2
+			;;
 #Error
 	        *)
 	                echo "Unknown command"
@@ -128,6 +131,10 @@ function dumpApkInterface() {
 
 function openedActivity() {
 	adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'
+}
+
+function adbKill() {
+	adb shell am kill $1
 }
 
 #they are more examples actually, you need to find the commands on sdk tools folder
