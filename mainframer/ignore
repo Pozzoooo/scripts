@@ -1,5 +1,12 @@
 local.properties
-.idea/
+
 *.iml
+
+.idea/
 .gradle/
 .mainframer/
+.git/
+
+tmp/
+build/generated/
+build/kotlin/

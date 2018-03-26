@@ -1,6 +1,10 @@
-src/
-*.gradle
 gradle.properties
 gradlew
+
+*.gradle
+
 .gradle/
 .gitignore
+
+src/
+intermediates/
