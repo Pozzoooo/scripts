@@ -3,6 +3,7 @@
 	email = luiz.pozzo@gmail.com
 [core]
 	autocrlf = input
+	editor = vim
 [color]
 	ui = auto
 [alias]
