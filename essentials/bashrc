@@ -7,8 +7,11 @@
 
 #has to be set to scripts folder manually
 DIR="$HOME/dev/projs/scripts"
-alias and="$DIR/android/android.sh"
+
+#essentials scripts
 alias hlp="$DIR/linux/helper.sh"
+alias and="$DIR/android/android.sh"
+alias proj="$DIR/android/projectTools.sh"
 alias mode="$DIR/linux/mode.sh"
 alias studio="$HOME/dev/android-studio/bin/studio.sh"
 
