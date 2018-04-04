@@ -26,7 +26,7 @@ function main() {
 			screenBrithness $2 $3
 			;;
 		scan)
-			arp-scan --interface=$2 --localnet
+			scan "$2"
 			;;
 		shDir)
 			shDir
@@ -43,6 +43,13 @@ function main() {
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
+}
+
+function scan() {
+	sudo arp-scan -l | grep -i "$1"
+	#Others ways to do the same:ç
+	#nmap -sn 172.24.227.0/24 | grep -i -B 4 "68:f7:28:52:ee:3f"
+	#arp-scan --interface=$2 --localnet
 }
 
 #An even beter tool: https://github.com/arzzen/git-quick-stats
