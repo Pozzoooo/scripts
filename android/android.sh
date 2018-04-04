@@ -89,6 +89,9 @@ function main() {
 		startAction)
 			startAction $2 $3 $4 $5
 			;;
+		install)
+			install $2
+			;;
 #Record
 		record)
 			record $2
@@ -230,6 +233,10 @@ function startActivity() {
 #adb shell am start -a "android.intent.action.SEND" --es "android.intent.extra.TEXT" "Hello World" -t "text/plain"
 function startAction() {
 	adb shell am start -a $1 -es $2 $3 -t $4
+}
+
+function install() {
+	adb install -r -t "$1"
 }
 
 main "$@"
