@@ -1,9 +1,11 @@
 #!/bin/bash
 
 set -e
+set -x
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $DIR/input.sh
+input="$DIR/input.sh"
+and="$DIR/android.sh"
 
 function missing() {
 	>&2 echo "missing $1"
@@ -35,7 +37,7 @@ function main() {
 }
 
 function start() {
-	"$DIR/android.sh" startActivity "${PACKAGE}.${ENVIRONMENT}.${BUILD_TYPE}/${PACKAGE}.${MAIN_ACTIVITY}"
+	"$and" startActivity "${PACKAGE}.${ENVIRONMENT}.${BUILD_TYPE}/${PACKAGE}.${MAIN_ACTIVITY}"
 }
 
 main "$@"
