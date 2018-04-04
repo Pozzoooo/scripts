@@ -1,4 +1,4 @@
-#Add it to ~/.basrc like this: . ~/dev/projs/scripts/essentials/bashrc
+#Add it to $HOME/.basrc like this: . $HOME/dev/projs/scripts/essentials/bashrc
 
 #
 # esc . ctrl + e = expand alias

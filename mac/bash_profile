@@ -1,0 +1,16 @@
+#Add it to $HOME/.bash_profile like this: . $HOME/dev/projs/scripts/mac/bash_profile
+
+. $HOME/dev/projs/scripts/essentials/bashrc
+
+#Helpers
+alias mac="$HOME/dev/projs/scripts/mac/macHelper.sh"
+
+#Dev config
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+export ANDROID_HOME="$HOME/dev/sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+#Bash config
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
