@@ -92,6 +92,9 @@ function main() {
 		install)
 			install $2
 			;;
+		uninstall)
+			uninstall $2
+			;;
 #Record
 		record)
 			record $2
@@ -237,6 +240,11 @@ function startAction() {
 
 function install() {
 	adb install -r -t "$1"
+}
+
+function uninstall() {
+	echo "$1"
+	adb uninstall "$1"
 }
 
 main "$@"

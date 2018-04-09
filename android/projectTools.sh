@@ -7,6 +7,11 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 input="$DIR/input.sh"
 and="$DIR/android.sh"
 
+if [[ -z $1 ]]; then
+	echo "say me what"
+	exit
+fi;
+
 function missing() {
 	>&2 echo "missing $1"
 	exit 1
@@ -39,6 +44,12 @@ function main() {
 		install)
 			install
 			;;
+		uninstall)
+			uninstall
+			;;
+		*)
+			echo "whaaaaaaaaaat?"
+			exit
 	esac
 }
 
@@ -48,6 +59,10 @@ function start() {
 
 function install() {
 	"$and" install "app/build/outputs/apk/${ENVIRONMENT}/${BUILD_TYPE}/app-${ENVIRONMENT}-${BUILD_TYPE}.apk"
+}
+
+function uninstall() {
+	"$and" uninstall "$PACKAGE.$APPLICATION_ID_SUFFIX.$BUILD_TYPE"
 }
 
 main "$@"
