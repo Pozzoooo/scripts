@@ -6,6 +6,7 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 input="$DIR/input.sh"
 and="$DIR/android.sh"
+gradle="./gradlew"
 
 if [[ -z $1 ]]; then
 	echo "say me what"
@@ -13,28 +14,30 @@ if [[ -z $1 ]]; then
 fi;
 
 function missing() {
-	>&2 echo "missing $1"
+	>&2 echo "missing $1, sample: $2"
 	exit 1
 }
 
 if [ -z "$PACKAGE" ]; then
-	missing "PACKAGE"
+i	missing "PACKAGE" "com.cool.project"
 fi;
 if [ -z "$ENVIRONMENT" ]; then
-	missing "ENVIRONMENT"
+	missing "ENVIRONMENT" "snapshot"
 	echo "foca"
 fi;
 if [ -z "$BUILD_TYPE" ]; then
-	missing "BUILD_TYPE"
+	missing "BUILD_TYPE" "debug"
 fi;
 if [ -z "$MAIN_ACTIVITY" ]; then
-	missing "MAIN_ACTIVITY"
+	missing "MAIN_ACTIVITY" "SplashActivity"
 fi;
 if [ -z "$APPLICATION_ID_SUFFIX" ]; then
-	missing "APPLICATION_ID_SUFFIX"
+	missing "APPLICATION_ID_SUFFIX" "snapshot"
 fi;
 
 echo "parameters: PACKAGE:$PACKAGE ENVIRONMENT:$ENVIRONMENT BUILD_TYPE:$BUILD_TYPE MAIN_ACTIVITY:$MAIN_ACTIVITY APPLICATION_ID_SUFFIX:$APPLICATION_ID_SUFFIX"
+
+FULL_ID="${PACKAGE}.${APPLICATION_ID_SUFFIX}.${BUILD_TYPE}"
 
 function main() {
 	case $1 in
@@ -47,14 +50,21 @@ function main() {
 		uninstall)
 			uninstall
 			;;
+		kill)
+			killApp
+			;;
 		*)
 			echo "whaaaaaaaaaat?"
 			exit
 	esac
 }
 
+function assemble() {
+	"$gradlew" "assemble"
+}
+
 function start() {
-	"$and" startActivity "${PACKAGE}.${APPLICATION_ID_SUFFIX}.${BUILD_TYPE}/${PACKAGE}.${MAIN_ACTIVITY}"
+	"$and" startActivity "${FULL_ID}/${PACKAGE}.${MAIN_ACTIVITY}"
 }
 
 function install() {
@@ -62,7 +72,11 @@ function install() {
 }
 
 function uninstall() {
-	"$and" uninstall "$PACKAGE.$APPLICATION_ID_SUFFIX.$BUILD_TYPE"
+	"$and" uninstall "$FULL_ID"
+}
+
+function killApp() {
+	"$and" kill "$FULL_ID"
 }
 
 main "$@"
