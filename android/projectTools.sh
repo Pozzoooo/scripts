@@ -6,7 +6,6 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 input="$DIR/input.sh"
 and="$DIR/android.sh"
-gradle="./gradlew"
 
 if [[ -z $1 ]]; then
 	echo "say me what"
@@ -34,12 +33,18 @@ fi;
 if [ -z "$APPLICATION_ID_SUFFIX" ]; then
 	missing "APPLICATION_ID_SUFFIX" "snapshot"
 fi;
+if [ -z "$REMOTE_COMPILE" ]; then
+	gradle="./gradlew"
+else
+	gradle="mainframer ./gradlew"
+fi;
 
 echo "parameters: PACKAGE:$PACKAGE ENVIRONMENT:$ENVIRONMENT BUILD_TYPE:$BUILD_TYPE MAIN_ACTIVITY:$MAIN_ACTIVITY APPLICATION_ID_SUFFIX:$APPLICATION_ID_SUFFIX"
 
 FULL_ID="${PACKAGE}.${APPLICATION_ID_SUFFIX}.${BUILD_TYPE}"
 ENVIRONMENT_UP="$(tr '[:lower:]' '[:upper:]' <<< ${ENVIRONMENT:0:1})${ENVIRONMENT:1}"
 BUILD_TYPE_UP="$(tr '[:lower:]' '[:upper:]' <<< ${BUILD_TYPE:0:1})${BUILD_TYPE:1}"
+GRADLE_COMMAND_SUFFIX="${ENVIRONMENT_UP}${BUILD_TYPE_UP}"
 
 function main() {
 #what about a loop and shift commands?
@@ -66,7 +71,7 @@ function main() {
 }
 
 function assemble() {
-	"$gradle" "assemble${ENVIRONMENT_UP}${BUILD_TYPE_UP}"
+	eval "$gradle assemble$GRADLE_COMMAND_SUFFIX"
 }
 
 function start() {
