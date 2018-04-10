@@ -38,9 +38,15 @@ fi;
 echo "parameters: PACKAGE:$PACKAGE ENVIRONMENT:$ENVIRONMENT BUILD_TYPE:$BUILD_TYPE MAIN_ACTIVITY:$MAIN_ACTIVITY APPLICATION_ID_SUFFIX:$APPLICATION_ID_SUFFIX"
 
 FULL_ID="${PACKAGE}.${APPLICATION_ID_SUFFIX}.${BUILD_TYPE}"
+ENVIRONMENT_UP="$(tr '[:lower:]' '[:upper:]' <<< ${ENVIRONMENT:0:1})${ENVIRONMENT:1}"
+BUILD_TYPE_UP="$(tr '[:lower:]' '[:upper:]' <<< ${BUILD_TYPE:0:1})${BUILD_TYPE:1}"
 
 function main() {
+#what about a loop and shift commands?
 	case $1 in
+		assemble)
+			assemble
+			;;
 		start)
 			start
 			;;
@@ -60,7 +66,7 @@ function main() {
 }
 
 function assemble() {
-	"$gradlew" "assemble"
+	"$gradle" "assemble${ENVIRONMENT_UP}${BUILD_TYPE_UP}"
 }
 
 function start() {
