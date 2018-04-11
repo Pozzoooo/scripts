@@ -39,35 +39,60 @@ else
 	gradle="mainframer ./gradlew"
 fi;
 
-echo "parameters: PACKAGE:$PACKAGE ENVIRONMENT:$ENVIRONMENT BUILD_TYPE:$BUILD_TYPE MAIN_ACTIVITY:$MAIN_ACTIVITY APPLICATION_ID_SUFFIX:$APPLICATION_ID_SUFFIX"
-
 FULL_ID="${PACKAGE}.${APPLICATION_ID_SUFFIX}.${BUILD_TYPE}"
 ENVIRONMENT_UP="$(tr '[:lower:]' '[:upper:]' <<< ${ENVIRONMENT:0:1})${ENVIRONMENT:1}"
 BUILD_TYPE_UP="$(tr '[:lower:]' '[:upper:]' <<< ${BUILD_TYPE:0:1})${BUILD_TYPE:1}"
 GRADLE_COMMAND_SUFFIX="${ENVIRONMENT_UP}${BUILD_TYPE_UP}"
 
 function main() {
-#what about a loop and shift commands?
-	case $1 in
-		assemble)
-			assemble
-			;;
-		start)
-			start
-			;;
-		install)
-			install
-			;;
-		uninstall)
-			uninstall
-			;;
-		kill)
-			killApp
-			;;
-		*)
-			echo "whaaaaaaaaaat?"
-			exit
-	esac
+	debugParams
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			assemble)
+				assemble
+				;;
+			start)
+				start
+				;;
+			install)
+				install
+				;;
+			uninstall)
+				uninstall
+				;;
+			kill)
+				killApp
+				;;
+			what|debug)
+				debugParams
+				debugBuiltParams
+				;;
+			*)
+				echo "could not find \"$1\" command"
+				exit
+		esac
+	shift
+	done
+}
+
+function debugParams() {
+	echo "
+		ENVIRONMENT:	$ENVIRONMENT
+		PACKAGE:	$PACKAGE
+		BUILD_TYPE:	$BUILD_TYPE
+		MAIN_ACTIVITY:	$MAIN_ACTIVITY
+		APPLICATION_ID_SUFFIX:$APPLICATION_ID_SUFFIX
+		REMOTE_COMPILE:	$REMOTE_COMPILE
+	"
+}
+
+function debugBuiltParams() {
+	echo "
+		FULL_ID:		$FULL_ID
+		ENVIRONMENT_UP:		$ENVIRONMENT_UP
+		BUILD_TYPE_UP:		$BUILD_TYPE_UP
+		GRADLE_COMMAND_SUFFIX:	$GRADLE_COMMAND_SUFFIX
+	"
 }
 
 function assemble() {
