@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# TODO would be nice to group the gradle commands, so I won't need to re sync or restart gradle
+#
+
 set -e
 #set -x
 
@@ -57,8 +61,17 @@ function main() {
 			install)
 				install
 				;;
+			clean)
+				clean
+				;;
+			test)
+				test
+				;;
 			uninstall)
 				uninstall
+				;;
+			lint)
+				lint
 				;;
 			kill)
 				killApp
@@ -95,8 +108,16 @@ function debugBuiltParams() {
 	"
 }
 
+function clean() {
+	eval "$gradle clean"
+}
+
 function assemble() {
 	eval "$gradle assemble$GRADLE_COMMAND_SUFFIX"
+}
+
+function test() {
+	eval "$gradle test$GRADLE_COMMAND_SUFFIX"
 }
 
 function start() {
@@ -109,6 +130,10 @@ function install() {
 
 function uninstall() {
 	"$and" uninstall "$FULL_ID"
+}
+
+function lint() {
+	eval "$gradle lint$GRADLE_COMMAND_SUFFIX"
 }
 
 function killApp() {
