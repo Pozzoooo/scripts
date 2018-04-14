@@ -40,6 +40,9 @@ function main() {
 		countDown)
 			countDown $2
 			;;
+		refreshClock)
+			refreshClock
+			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
@@ -150,6 +153,10 @@ function countDown() {
 		tput cuu1
 		tput el
 	done
+}
+
+function refreshClock() {
+	sudo ntpdate -s time.nist.gov
 }
 
 main "$@"
