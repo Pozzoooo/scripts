@@ -3,8 +3,8 @@
 set -e
 #set -x
 
-# cmd + k = hard clear
 #
+# cmd + k = hard clear
 #
 
 if [[ -z $1 ]]; then
@@ -45,13 +45,13 @@ function disableEffects() {
 	defaults write -g NSScrollAnimationEnabled -bool false
 
 	# showing and hiding sheets, resizing preference windows, zooming windows
-	# float 0 doesn't work
+	# float 0 doesnt work
 	defaults write -g NSWindowResizeTime -float 0.001
 
 	# opening and closing Quick Look windows
 	defaults write -g QLPanelAnimationDuration -float 0
 
-	# rubberband scrolling (doesn't affect web views)
+	# rubberband scrolling (doesnt affect web views)
 	defaults write -g NSScrollViewRubberbanding -bool false
 
 	# resizing windows before and after showing the version browser

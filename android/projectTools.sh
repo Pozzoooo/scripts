@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#
-# TODO would be nice to group the gradle commands, so I won't need to re sync or restart gradle
-#
-
 set -e
 #set -x
 
