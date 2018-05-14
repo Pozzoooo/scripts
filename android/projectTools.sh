@@ -48,28 +48,28 @@ function main() {
 	debugParams
 	while [[ $# -gt 0 ]]; do
 		case $1 in
-			assemble)
+			assemble|ass|a)
 				assemble
 				;;
-			start)
+			start|st|s)
 				start
 				;;
-			install)
+			install|inst|i)
 				install
 				;;
-			clean)
+			clean|c)
 				clean
 				;;
-			test)
+			test|t)
 				test
 				;;
-			uninstall)
+			uninstall|unins|u)
 				uninstall
 				;;
 			lint)
 				lint
 				;;
-			kill)
+			kill|k)
 				killApp
 				;;
 			what|debug)
