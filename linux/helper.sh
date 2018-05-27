@@ -40,8 +40,11 @@ function main() {
 		countDown)
 			countDown $2
 			;;
-		refreshClock)
+		refreshClock|clock)
 			refreshClock
+			;;
+		bumblebeeSettings)
+			optirun -b none nvidia-settings -c :8
 			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
