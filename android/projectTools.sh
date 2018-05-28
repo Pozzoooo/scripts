@@ -77,8 +77,8 @@ function main() {
 				debugBuiltParams
 				;;
 			*)
-				echo "could not find \"$1\" command"
-				exit
+				runOnGradle $1
+				;;
 		esac
 	shift
 	done
@@ -134,6 +134,10 @@ function lint() {
 
 function killApp() {
 	"$and" kill "$FULL_ID"
+}
+
+function runOnGradle() {
+	eval "$gradle $@"
 }
 
 main "$@"
