@@ -18,7 +18,7 @@ function missing() {
 }
 
 if [ -z "$PACKAGE" ]; then
-i	missing "PACKAGE" "com.cool.project"
+	missing "PACKAGE" "com.cool.project"
 fi;
 if [ -z "$ENVIRONMENT" ]; then
 	missing "ENVIRONMENT" "snapshot"
