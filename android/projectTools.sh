@@ -48,28 +48,28 @@ function main() {
 	debugParams
 	while [[ $# -gt 0 ]]; do
 		case $1 in
-			assemble)
+			assemble|ass|a)
 				assemble
 				;;
-			start)
+			start|st|s)
 				start
 				;;
-			install)
+			install|inst|i)
 				install
 				;;
-			clean)
+			clean|c)
 				clean
 				;;
-			test)
+			test|t)
 				test
 				;;
-			uninstall)
+			uninstall|unins|u)
 				uninstall
 				;;
 			lint)
 				lint
 				;;
-			kill)
+			kill|k)
 				killApp
 				;;
 			what|debug)
@@ -77,8 +77,8 @@ function main() {
 				debugBuiltParams
 				;;
 			*)
-				echo "could not find \"$1\" command"
-				exit
+				runOnGradle $1
+				;;
 		esac
 	shift
 	done
@@ -134,6 +134,10 @@ function lint() {
 
 function killApp() {
 	"$and" kill "$FULL_ID"
+}
+
+function runOnGradle() {
+	eval "$gradle $@"
 }
 
 main "$@"

@@ -8,5 +8,3 @@ local.properties
 .git/
 
 tmp/
-build/generated/
-build/kotlin/
