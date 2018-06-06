@@ -22,7 +22,6 @@ if [ -z "$PACKAGE" ]; then
 fi;
 if [ -z "$ENVIRONMENT" ]; then
 	missing "ENVIRONMENT" "snapshot"
-	echo "foca"
 fi;
 if [ -z "$BUILD_TYPE" ]; then
 	missing "BUILD_TYPE" "debug"

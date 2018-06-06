@@ -43,7 +43,7 @@ function main() {
 		refreshClock|clock)
 			refreshClock
 			;;
-		bumblebeeSettings)
+		bum|bumblebeeSettings)
 			optirun -b none nvidia-settings -c :8
 			;;
         	*)
