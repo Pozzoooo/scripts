@@ -3,6 +3,10 @@
 set -e
 #set -x
 
+#
+# todo I need to find a way to group commands, would be much more efficient
+#
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 input="$DIR/input.sh"
 and="$DIR/android.sh"
