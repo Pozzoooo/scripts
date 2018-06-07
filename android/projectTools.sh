@@ -5,6 +5,7 @@ set -e
 
 #
 # todo I need to find a way to group commands, would be much more efficient
+# todo another idea, I need to scrape some of the project info from the project actual files, that also would make the command more smart based on the folder you are running it
 #
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
