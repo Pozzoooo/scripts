@@ -22,6 +22,9 @@ alias l='ls -CF'
 alias ld='ls -d' #great to filter directories
 alias c='clear'
 
+#defaults
+export EDITOR="vim"
+
 #error correction
 alias sl=ls
 alias bim='vim'
