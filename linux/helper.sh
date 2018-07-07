@@ -47,7 +47,10 @@ function main() {
 			optirun -b none nvidia-settings -c :8
 			;;
 		iso|copyIso)
-			copyIso $2 $3
+			copyIso "$2" "$3"
+			;;
+		win|copyWin)
+			copyWin "$2" "$3"
 			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
@@ -167,6 +170,10 @@ function refreshClock() {
 
 function copyIso() {
 	sudo dd if="$1" of="/dev/$2" bs=4M status=progress oflag=sync
+}
+
+function copyWin() {
+	sudo woeusb --device "$1" "/dev/$2"
 }
 
 main "$@"
