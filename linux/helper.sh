@@ -46,6 +46,9 @@ function main() {
 		bum|bumblebeeSettings)
 			optirun -b none nvidia-settings -c :8
 			;;
+		iso|copyIso)
+			copyIso $2 $3
+			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
@@ -160,6 +163,10 @@ function countDown() {
 
 function refreshClock() {
 	sudo ntpdate -s time.nist.gov
+}
+
+function copyIso() {
+	sudo dd if="$1" of="/dev/$2" bs=4M status=progress oflag=sync
 }
 
 main "$@"
