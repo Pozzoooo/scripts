@@ -91,7 +91,7 @@ function disableEffects() {
 
 function init() {
 	open /Applications/Google\ Chrome.app
-	open /Applications/DeskDockServer*.app
+	#open /Applications/DeskDockServer*.app
 	open /Applications/Android\ Studio.app
 	(sleep 20 && open /Applications/Charles.app) &
 	#osascript ~/dev/projs/scripts/mac/wake.scpt
