@@ -26,7 +26,9 @@ if [ -z "$PACKAGE" ]; then
 	missing "PACKAGE" "com.cool.project"
 fi;
 if [ -z "$ENVIRONMENT" ]; then
-	missing "ENVIRONMENT" "snapshot"
+	ENVIRONMENT_UP=""
+else
+	ENVIRONMENT_UP="$(tr '[:lower:]' '[:upper:]' <<< ${ENVIRONMENT:0:1})${ENVIRONMENT:1}"	
 fi;
 if [ -z "$BUILD_TYPE" ]; then
 	missing "BUILD_TYPE" "debug"
@@ -35,16 +37,20 @@ if [ -z "$MAIN_ACTIVITY" ]; then
 	missing "MAIN_ACTIVITY" "SplashActivity"
 fi;
 if [ -z "$APPLICATION_ID_SUFFIX" ]; then
-	missing "APPLICATION_ID_SUFFIX" "snapshot"
+	FULL_ID="${PACKAGE}.${BUILD_TYPE}"
+else
+	FULL_ID="${PACKAGE}.${APPLICATION_ID_SUFFIX}.${BUILD_TYPE}"	
 fi;
-if [ -z "$REMOTE_COMPILE" ]; then
+if [ "$REMOTE_COMPILE" = false ]; then
 	gradle="./gradlew"
 else
 	gradle="mainframer ./gradlew"
 fi;
+if [ -z "$APP_FOLDER" ]; then
+	APP_FOLDER="app"
+fi;
 
-FULL_ID="${PACKAGE}.${APPLICATION_ID_SUFFIX}.${BUILD_TYPE}"
-ENVIRONMENT_UP="$(tr '[:lower:]' '[:upper:]' <<< ${ENVIRONMENT:0:1})${ENVIRONMENT:1}"
+
 BUILD_TYPE_UP="$(tr '[:lower:]' '[:upper:]' <<< ${BUILD_TYPE:0:1})${BUILD_TYPE:1}"
 GRADLE_COMMAND_SUFFIX="${ENVIRONMENT_UP}${BUILD_TYPE_UP}"
 
@@ -96,6 +102,7 @@ function debugParams() {
 		MAIN_ACTIVITY:	$MAIN_ACTIVITY
 		APPLICATION_ID_SUFFIX:$APPLICATION_ID_SUFFIX
 		REMOTE_COMPILE:	$REMOTE_COMPILE
+		APP_FOLDER:	$APP_FOLDER
 	"
 }
 
@@ -113,7 +120,9 @@ function clean() {
 }
 
 function assemble() {
-	eval "$gradle assemble$GRADLE_COMMAND_SUFFIX"
+	local COMMAND="$gradle assemble$GRADLE_COMMAND_SUFFIX"
+	echo "$COMMAND"
+	eval "$COMMAND"
 }
 
 function test() {
@@ -125,7 +134,11 @@ function start() {
 }
 
 function install() {
-	"$and" install "app/build/outputs/apk/${ENVIRONMENT}/${BUILD_TYPE}/app-${ENVIRONMENT}-${BUILD_TYPE}.apk"
+	if [ -z "$ENVIRONMENT" ]; then
+		"$and" install "$APP_FOLDER/build/outputs/apk/${BUILD_TYPE}/${APP_FOLDER}-${BUILD_TYPE}.apk"
+	else
+		"$and" install "$APP_FOLDER/build/outputs/apk/${ENVIRONMENT}/${BUILD_TYPE}/${APP_FOLDER}-${ENVIRONMENT}-${BUILD_TYPE}.apk"
+	fi;
 }
 
 function uninstall() {
