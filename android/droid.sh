@@ -22,6 +22,7 @@ function main() {
 }
 
 function top() {
+	#another great parameter is top -o cpu,res,args
 	watch -t -n 7 -e 'top | head -n 10'
 }
 
