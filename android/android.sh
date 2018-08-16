@@ -238,6 +238,11 @@ function startAction() {
 	adb shell am start -a $1 -es $2 $3 -t $4
 }
 
+#seems like we can add unlimited extras:
+#adb shell am start -n com.example.mike.app/.SimpleActivity --es "Message" "hello!"
+#or
+#am start -a android.intent.action.VIEW -c android.intent.category.DEFAULT -e foo bar -e bert ernie -n my.package.component.blah
+
 function install() {
 	adb install -r -t "$1"
 }
