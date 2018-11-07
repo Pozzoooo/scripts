@@ -119,6 +119,9 @@ function main() {
 		kill)
 			adbKill $2
 			;;
+		restartAdb|restart|killAdb)
+			restartAdb
+			;;
 #Error
 	        *)
 	                echo "Unknown command"
@@ -250,6 +253,11 @@ function install() {
 function uninstall() {
 	echo "$1"
 	adb uninstall "$1"
+}
+
+function restartAdb() {
+	adb kill-server
+	adb start-server
 }
 
 main "$@"
