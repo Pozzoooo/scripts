@@ -22,6 +22,9 @@ function main() {
 		gitPullFolder|pull)
 			gitPullFolder
 			;;
+		gitRank)
+			gitRank
+			;;
 		brith)
 			screenBrithness $2 $3
 			;;
@@ -70,6 +73,10 @@ function gitStatusByUser() {
 		| gawk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s removed lines: %s total lines: %s\n", add, subs, loc }' -
 }
 
+function gitRank() {
+	git log --since=12.month --numstat --pretty="%ae %H" | sed 's/@.*//g' | awk '{ if (NF == 1){ name = $1}; if(NF == 3) {plus[name] += $1; minus[name] += $2}} END { for (name in plus) {print name": +"plus[name]" -"minus[name]}}' | sort -k2 -gr
+}
+
 function gateway() {
 	ip route | grep default
 }
@@ -92,7 +99,6 @@ function screenBrithness() {
 			;;
 	esac
 }
-
 
 function gitPullFolder() {
 	ls | xargs -I X sh -c "echo X; cd X; git pull; cd ..; echo ''; echo ''"
