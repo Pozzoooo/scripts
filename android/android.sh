@@ -40,6 +40,9 @@ function main() {
 		tab)
 			tab
 			;;
+		comboTabEnter)
+			comboTabEnter $2
+			;;
 #Media
 		volUp|vup|louder|vu)
 			volumeUp $2
@@ -107,6 +110,9 @@ function main() {
 			pull $2
 			;;
 #Tools
+		pos)
+			positionByText "$2"
+			;;
 		apps)
 			listAllApps
 			;;
@@ -130,6 +136,11 @@ function main() {
 }
 
 # ----- Tools ------
+function positionByText() {
+	PERL_CMD='printf "%d %d\n", ($1+$3)/2, ($2+$4)/2 if /text="'$1'"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/'
+	adb pull $(adb shell uiautomator dump | awk '{print $NF}') /tmp/view.xml && perl -ne "$PERL_CMD" /tmp/view.xml
+}
+
 function listAllApps() {
 	adb shell 'pm list packages -f'
 }
