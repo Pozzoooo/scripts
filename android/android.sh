@@ -120,6 +120,9 @@ function main() {
 		pos)
 			positionByText "$2"
 			;;
+		posId)
+			positionId "$2"
+			;;
 		apps)
 			listAllApps
 			;;
@@ -146,8 +149,16 @@ function main() {
 }
 
 # ----- Tools ------
+function positionId() {
+	positionByField $1 "resource-id"
+}
+
 function positionByText() {
-	PERL_CMD='printf "%d %d\n", ($1+$3)/2, ($2+$4)/2 if /text="'$1'"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/'
+	positionByField $1 "text"
+}
+
+function positionByField() {
+	PERL_CMD='printf "%d %d\n", ($1+$3)/2, ($2+$4)/2 if /'$2'="'$1'"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/'
 	IGNORE_PULL_OUT=uiDump
 	perl -ne "$PERL_CMD" /tmp/view.xml
 }
