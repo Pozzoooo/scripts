@@ -21,6 +21,11 @@ function volumeDown() {
         done
 }
 
+function tap() {
+	echo "$1 $2"
+	adb shell input tap $1 $2
+}
+
 function tab() {
         key 61
 }

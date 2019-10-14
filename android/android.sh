@@ -40,6 +40,13 @@ function main() {
 		tab)
 			tab
 			;;
+		tap)
+			tap `positionByText "$2"`
+			sleep 2
+			;;
+		tapAt)
+			tap "$2 $3"
+			;;
 		comboTabEnter)
 			comboTabEnter $2
 			;;
@@ -128,6 +135,9 @@ function main() {
 		restartAdb|restart|killAdb)
 			restartAdb
 			;;
+		uiDump)
+			uiDump
+			;;
 #Error
 	        *)
 	                echo "Unknown command"
@@ -138,7 +148,12 @@ function main() {
 # ----- Tools ------
 function positionByText() {
 	PERL_CMD='printf "%d %d\n", ($1+$3)/2, ($2+$4)/2 if /text="'$1'"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/'
-	adb pull $(adb shell uiautomator dump | awk '{print $NF}') /tmp/view.xml && perl -ne "$PERL_CMD" /tmp/view.xml
+	IGNORE_PULL_OUT=uiDump
+	perl -ne "$PERL_CMD" /tmp/view.xml
+}
+
+function uiDump() {
+	adb pull $(adb shell uiautomator dump | awk '{print $NF}') /tmp/view.xml
 }
 
 function listAllApps() {
