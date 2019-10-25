@@ -105,6 +105,9 @@ function main() {
 		uninstall)
 			uninstall $2
 			;;
+		installAll)
+			installAll $2
+			;;
 #Record
 		record)
 			record $2
@@ -290,6 +293,10 @@ function install() {
 function uninstall() {
 	echo "$1"
 	adb uninstall "$1"
+}
+
+function installAll() {
+	adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install "$1"
 }
 
 function restartAdb() {
