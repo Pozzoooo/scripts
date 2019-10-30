@@ -41,7 +41,7 @@ function main() {
 			tab
 			;;
 		tap)
-			tap `positionByText "$2"`
+			tap `positionByText "$2" | tail -1`
 			sleep 2
 			;;
 		tapAt)
@@ -163,6 +163,7 @@ function positionByText() {
 function positionByField() {
 	PERL_CMD='printf "%d %d\n", ($1+$3)/2, ($2+$4)/2 if /'$2'="'$1'"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/'
 	IGNORE_PULL_OUT=uiDump
+	uiDump
 	perl -ne "$PERL_CMD" /tmp/view.xml
 }
 
