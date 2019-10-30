@@ -14,6 +14,8 @@ alias and="$DIR/android/android.sh"
 alias proj="$DIR/android/projectTools.sh"
 alias mode="$DIR/linux/mode.sh"
 alias studio="$HOME/dev/android-studio/bin/studio.sh"
+alias studiob="$HOME/dev/android-studio-beta/bin/studio.sh"
+alias studioc="$HOME/dev/android-studio-canary/bin/studio.sh"
 
 #basic
 alias ll='ls -alF'
