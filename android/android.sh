@@ -87,7 +87,10 @@ function main() {
 			dozeOff
 			;;
 		demo)
-			demoMode $1
+			demoMode $2
+			;;
+		set|setDevice)
+			setDevice $2
 			;;
 #Intent
 		start|url|open)
@@ -227,12 +230,12 @@ function sign() {
 function connect() {
 	PORT=9900
         IP=`deviceIp`
-	adb -d tcpip $PORT
-        adb -d connect $IP:$PORT
+	adb tcpip $PORT
+        adb connect $IP:$PORT
 }
 
 function deviceIp() {
-	adb -d shell ip route | awk {'if( NF >=9){print $9;}'} #maybe alternative: adb shell netcfg
+	adb shell ip route | awk {'if( NF >=9){print $9;}'} #maybe alternative: adb shell netcfg
 }
 
 function wifiKeyboardDefaultUrl() {
@@ -265,6 +268,12 @@ function dozeOff() {
 #to exit demo -> adb shell am broadcast -a com.android.systemui.demo -e command exit
 function demoMode() {
 	adb shell settings put global sysui_demo_allowed $1
+}
+
+#it would only work with `source`
+function setDevice() {
+	export ANDROID_SERIAL="$1"
+	#unset ANDROID_SERIAL
 }
 
 # ------- Intent ------
