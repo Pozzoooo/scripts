@@ -26,6 +26,10 @@ function tap() {
 	adb shell input tap $1 $2
 }
 
+function back() {
+	key 4
+}
+
 function tab() {
         key 61
 }
@@ -171,3 +175,4 @@ function comboTabEnter() {
 #...
 #122 -->  "KEYCODE_MOVE_HOME"
 #123 -->  "KEYCODE_MOVE_END"
+
