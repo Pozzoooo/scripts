@@ -6,7 +6,7 @@
 alias mac="$HOME/dev/projs/scripts/mac/macHelper.sh"
 
 #Dev config
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export ANDROID_HOME="$HOME/dev/sdk"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
