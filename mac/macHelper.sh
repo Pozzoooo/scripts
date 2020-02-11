@@ -27,6 +27,9 @@ function main() {
 		cpu)
 			cpu
 			;;
+		javaHome)
+			/usr/libexec/java_home -v 1.8
+			;;
 		*)
 			echo "=P"
 			;;
