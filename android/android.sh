@@ -50,6 +50,12 @@ function main() {
 		comboTabEnter)
 			comboTabEnter $2
 			;;
+		comboTab)
+			comboTab $2
+			;;
+		back)
+			back
+			;;
 #Media
 		volUp|vup|louder|vu)
 			volumeUp $2
@@ -171,7 +177,8 @@ function positionByField() {
 }
 
 function uiDump() {
-	adb pull $(adb shell uiautomator dump | awk '{print $NF}') /tmp/view.xml
+	adb exec-out uiautomator dump /dev/tty
+#	adb pull $(adb shell uiautomator dump | awk '{print $NF}') /tmp/view.xml
 }
 
 function listAllApps() {
