@@ -61,3 +61,6 @@ alias mgcd="mgc $ASSEMBLE"
 #git
 alias gitconfig="git config --global"
 
+#key remap
+hlp remapKeys
+

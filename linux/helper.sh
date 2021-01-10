@@ -55,6 +55,9 @@ function main() {
 		win|copyWin)
 			copyWin "$2" "$3"
 			;;
+		remapKeys)
+			remapKeys
+			;;
         	*)
 	                echo "Look at the script file to see the avaialble commands, aint gonna print myself :P"
 	esac
@@ -129,7 +132,7 @@ function installBasicPacks() {
 	apt-get -y install vim htop iftop iotop git xclip;
 }
 
-function installJDKi() {
+function installJDK() {
 	apt-get -y install lib32z1 lib32ncurses5 lib32stdc++6;
 	apt-get -y install openjdk-8-doc openjdk-8-jdk openjdk-8-source icedtea-8-plugin openjdk-8-dbg;
 }
@@ -180,6 +183,11 @@ function copyIso() {
 
 function copyWin() {
 	sudo woeusb --device "$1" "/dev/$2"
+}
+
+function remapKeys() {
+	xmodmap -e "keycode 107 = Super_L"
+	#xmodmap -e "keycode 105 = Menu"
 }
 
 main "$@"
