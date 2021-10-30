@@ -8,6 +8,9 @@
 #has to be set to scripts folder manually
 DIR="$HOME/dev/projs/scripts"
 
+#Enables files autocomplete in general
+complete -D -o default
+
 #essentials scripts
 alias hlp="$DIR/linux/helper.sh"
 alias and="$DIR/android/android.sh"
