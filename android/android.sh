@@ -37,6 +37,9 @@ function main() {
 		enter)
 			enter
 			;;
+		power)
+			power
+			;;
 		tab)
 			tab
 			;;

@@ -30,6 +30,10 @@ function back() {
 	key 4
 }
 
+function power() {
+	key 26
+}
+
 function tab() {
         key 61
 }
